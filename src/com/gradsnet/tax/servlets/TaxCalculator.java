@@ -7,8 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static com.gradsnet.tax.util.TaxCalculations.*;
-
+import com.gradsnet.tax.beans.Salary;
 
 /**
  * Servlet implementation class TaxCalculations
@@ -30,16 +29,13 @@ public class TaxCalculator extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String salaryString = request.getParameter("salary");
-		double salary = Double.parseDouble(salaryString);
-		double incomeTax = calculateIncomeTax(salary);
-		double contributionsNI = calculateNIContributions(salary);
-		double salaryAfterTax = salary - incomeTax - contributionsNI;
+		double pay = Double.parseDouble(salaryString);
+		TaxProcessor processor = new TaxProcessor(pay);
+		Salary salary = processor.getCalculatedSalary();
 
-		request.setAttribute("salary", String.format("%.2f", salary));
-		request.setAttribute("incomeTax", String.format("%.2f", incomeTax/12));
-		request.setAttribute("contributionsNI", String.format("%.2f", contributionsNI/12));
-		request.setAttribute("salaryAfterTax", String.format("%.2f", salaryAfterTax/12));
+		request.setAttribute("salary", salary);
 		request.getRequestDispatcher("/tax.jsp").forward(request, response);
+
 	}
 
 	/**

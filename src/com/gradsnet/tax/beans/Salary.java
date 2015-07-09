@@ -10,6 +10,11 @@ import java.io.Serializable;
  */
 public class Salary implements Serializable {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Salary before tax.
 	 */
 	private double initialSalary;

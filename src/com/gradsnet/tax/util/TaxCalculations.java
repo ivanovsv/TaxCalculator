@@ -122,20 +122,16 @@ public class TaxCalculations {
      * @param salary
      * @return
      */
-    public static double calculateNIContributions(double salary) {
-        double[] amountsNI = calculateNITaxableAmounts(salary);
-        double sum = amountsNI[1] * NI_EMPLOYEE_LEVEL_1 + amountsNI[2] * NI_EMPLOYEE_LEVEL_2;
-        return sum;
+    public static double calculateNIContributions(double[] amountsNI) {
+        return amountsNI[1] * NI_EMPLOYEE_LEVEL_1 + amountsNI[2] * NI_EMPLOYEE_LEVEL_2;
     }
 
     /**
      * @param salary
      * @return
      */
-    public static double calculateIncomeTax(double salary) {
-        double[] amountsIT = calculateIncomeTaxableAmounts(salary);
-        double sum = amountsIT[1] * BASIC_RATE_TAX + amountsIT[2] * HIGHER_RATE_TAX +
+    public static double calculateIncomeTax(double[] amountsIT) {
+        return amountsIT[1] * BASIC_RATE_TAX + amountsIT[2] * HIGHER_RATE_TAX +
                 amountsIT[3] * ADDITIONAL_RATE_TAX;
-        return sum;
     }
 }
