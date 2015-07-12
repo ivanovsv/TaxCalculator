@@ -12,7 +12,7 @@ import com.gradsnet.tax.beans.Salary;
 /**
  * Servlet implementation class TaxCalculations
  */
-@WebServlet("/salary")
+@WebServlet("/taxcalc")
 public class TaxCalculator extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
